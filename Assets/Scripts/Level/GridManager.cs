@@ -8,7 +8,19 @@ public class GridManager : MonoBehaviour
 {
     [Header("Grid Settings")]
     public RectTransform gridBackground;
-    public float cellSize = 100f;        // Cell size
+    public float cellSize = 100f;  // Cell size
+    
+    [Header("Rocket Hint Sprites")]
+    public Sprite redCubeRocketSprite;
+    public Sprite greenCubeRocketSprite;
+    public Sprite blueCubeRocketSprite;
+    public Sprite yellowCubeRocketSprite;
+
+    [Header("Normal Sprites")]
+    public Sprite redCubeNormalSprite;
+    public Sprite greenCubeNormalSprite;
+    public Sprite blueCubeNormalSprite;
+    public Sprite yellowCubeNormalSprite;
 
     [Header("Prefabs")]
     public GameObject redCubePrefab;
@@ -123,6 +135,7 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
+        HighlightPotentialRocketGroups();
     }
 
     private (GameObject prefab, string code) GetPrefabForCode(string code) // Returning prefabs according to input item codes and if the code belongs to an obstacle, registering it
@@ -193,6 +206,7 @@ public class GridManager : MonoBehaviour
                 {
                     CollapseColumn(col);
                 }
+                HighlightPotentialRocketGroups();
             }
         }
         else // Rocket explosion block
@@ -216,12 +230,13 @@ public class GridManager : MonoBehaviour
 
                     foreach (int col in affectedCols)
                         CollapseColumn(col);
+                        HighlightPotentialRocketGroups();
                 };
 
                 rocket.ExplodeRocket(itemMatrix, this);
             }
         }
-            }
+    }
 
     public void CollapseColumn(int x)
     {
@@ -384,10 +399,71 @@ public class GridManager : MonoBehaviour
 
     var affectedCols = destroyResult.DestroyItemsToExplode(itemMatrix);
 
-    foreach (int col in affectedCols)
-    {
-        CollapseColumn(col);
-    }
+        foreach (int col in affectedCols)
+        {
+            CollapseColumn(col);
+        }
+        HighlightPotentialRocketGroups();
 }
+    public void HighlightPotentialRocketGroups()
+    {
+        int width = itemMatrix.GetLength(0);
+        int height = itemMatrix.GetLength(1);
 
+        // Turning back all cube sprites to normal version
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                GridItem item = itemMatrix[x, y];
+                if (item == null) continue;
+
+                var img = item.GetComponent<UnityEngine.UI.Image>();
+                if (img == null) continue;
+
+                switch (item.itemCode)
+                {
+                    case "r": img.sprite = redCubeNormalSprite; break;
+                    case "g": img.sprite = greenCubeNormalSprite; break;
+                    case "b": img.sprite = blueCubeNormalSprite; break;
+                    case "y": img.sprite = yellowCubeNormalSprite; break;
+                }
+            }
+        }
+
+        // Scan cube groups those can generate rocket
+        HashSet<GridItem> visited = new HashSet<GridItem>();
+
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                GridItem current = itemMatrix[x, y];
+                if (current == null || visited.Contains(current))
+                    continue;
+
+                ItemsToExplode group = FindConnectedItems(x, y, current.itemCode);
+
+                foreach (var g in group.connectedCubes)
+                    visited.Add(g);
+
+                if (group.connectedCubes.Count >= 4) // If group consists of 4 or more cubes, change sprites
+                {
+                    foreach (var g in group.connectedCubes)
+                    {
+                        var img = g.GetComponent<UnityEngine.UI.Image>();
+                        if (img == null) continue;
+
+                        switch (g.itemCode)
+                        {
+                            case "r": img.sprite = redCubeRocketSprite; break;
+                            case "g": img.sprite = greenCubeRocketSprite; break;
+                            case "b": img.sprite = blueCubeRocketSprite; break;
+                            case "y": img.sprite = yellowCubeRocketSprite; break;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

@@ -1,16 +1,22 @@
 using UnityEngine;
+
 public static class LevelProgress
 {
     private const string KEY = "last_level";
+    private static int cachedLevel = -1; // Temporary variable to store level info accurately
 
-    public static int GetLastLevel() // Reading user's last level
+    public static int GetLastLevel()
     {
-        return PlayerPrefs.GetInt(KEY, 1);
+        if (cachedLevel == -1)
+            cachedLevel = PlayerPrefs.GetInt(KEY, 1);
+
+        return cachedLevel;
     }
 
-    public static void SetLastLevel(int levelNumber) // Setting user's last level
+    public static void SetLastLevel(int levelNumber)
     {
-        PlayerPrefs.SetInt(KEY, levelNumber);
+        cachedLevel = levelNumber; // Write it to temp variable first
+        PlayerPrefs.SetInt(KEY, levelNumber); 
         PlayerPrefs.Save();
     }
 }

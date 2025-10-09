@@ -870,6 +870,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridBackground: {fileID: 906736680}
   cellSize: 100
+  redCubeRocketSprite: {fileID: -4162601588504768772, guid: 41850ab4acf4444d0a6b832d9868a58d, type: 3}
+  greenCubeRocketSprite: {fileID: -8149426069742796037, guid: 5afd4d319e7f54fa686dab221c059321, type: 3}
+  blueCubeRocketSprite: {fileID: 8853254876290271475, guid: 92ac24fd073c940688e77f6ffc8785e7, type: 3}
+  yellowCubeRocketSprite: {fileID: 6090080599973395561, guid: fd12f6c282e27433bbd1882104045ad1, type: 3}
+  redCubeNormalSprite: {fileID: 8166710274925509176, guid: 481b984e59a5447fda7c3cb4cd9bf972, type: 3}
+  greenCubeNormalSprite: {fileID: -6099873399732076034, guid: 5b4726347bfca4f66963b64fee450aa5, type: 3}
+  blueCubeNormalSprite: {fileID: -2615874204119335, guid: b2b5d4d601758484998509d116ab940e, type: 3}
+  yellowCubeNormalSprite: {fileID: -8425141836431729757, guid: 674dfc220735a462fbaead890395239b, type: 3}
   redCubePrefab: {fileID: 2594660545639454521, guid: e4f810064f0cf4f98bbc1d693d1bb6dd, type: 3}
   greenCubePrefab: {fileID: 3446038330812183090, guid: c5bc1598a325646639c82bc7236255a0, type: 3}
   blueCubePrefab: {fileID: 6651027697331344542, guid: 9f3ccf722d66745828edd0301a9e99dd, type: 3}
@@ -879,6 +887,7 @@ MonoBehaviour:
   boxPrefab: {fileID: 2504386488180841177, guid: 3120ca2068e1e4ac5b9151519eef601c, type: 3}
   stonePrefab: {fileID: 1208780217563339240, guid: 26a2d1a8f97fa40b29c50255507044c5, type: 3}
   vasePrefab: {fileID: 2163221959014127989, guid: dc4921c63fcd04c9bb28c6dec72c624d, type: 3}
+  brokenVasePrefab: {fileID: 0}
 --- !u!114 &906736682
 MonoBehaviour:
   m_ObjectHideFlags: 0

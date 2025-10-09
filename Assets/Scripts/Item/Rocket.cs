@@ -242,7 +242,8 @@ public class RocketItem : ClickableItem // GridItem -> ClickableItem -> RocketIt
     public ItemsToExplode FindTargetsInRange(GridItem[,] itemMatrix) // Finding items in rockets range and storing them in ItemsToExplode structure
     {
         ItemsToExplode result = new ItemsToExplode();
-        result.connectedCubes.Add(this);
+
+        result.connectedCubes.Add(this); // Destroying initial rocket in the DestroyItemsToExplode function at the end by adding it in connectedCubes hashset
 
         int width = itemMatrix.GetLength(0);
         int height = itemMatrix.GetLength(1);
@@ -299,7 +300,6 @@ public class RocketItem : ClickableItem // GridItem -> ClickableItem -> RocketIt
                 }
             }
         }
-
         return result;
     }
 
@@ -335,6 +335,8 @@ public class RocketItem : ClickableItem // GridItem -> ClickableItem -> RocketIt
         HashSet<GridItem> visited = new HashSet<GridItem>();
 
         FindAllNearbyRocketsRecursive(itemMatrix, visited, fullChain);
+
+        fullChain.nearRockets.Add(this);
 
         return fullChain;
     }

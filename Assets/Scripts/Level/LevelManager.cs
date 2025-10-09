@@ -186,8 +186,9 @@ public class LevelManager : MonoBehaviour
 
     private void OnAllObstaclesDestroyed()
     {
-        Debug.Log("Level Completed!");
+        Debug.Log($"Level Completed! : {LevelManager.Instance.CurrentLevel.level_number}");
         LevelProgress.SetLastLevel(LevelManager.Instance.CurrentLevel.level_number + 1); // Increasing persisted level by 1
+        Debug.Log($"Current last level: {LevelProgress.GetLastLevel()}");
         ShowPopup(true); // Showing success version of popup
     }
 
