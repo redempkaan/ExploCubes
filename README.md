@@ -3,6 +3,7 @@
 A casual match-3 puzzle game built in **Unity**.  
 Combine colorful cubes, trigger chain reactions, and use rockets to clear obstacles!
 
+![Gameplay Preview](https://github.com/redempkaan/ExploCubes/blob/main/ExploCubes.gif)
 
 
 ## Mechanics
