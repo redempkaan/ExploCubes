@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 4141baef2c5a841d4aadd2e954851571
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - rocketLeftPrefab: {fileID: 3098885725061572226, guid: 21f23c97f4e8b480f9e512b125dd6b06, type: 3}
+  - rocketRightPrefab: {fileID: 3625503692222555919, guid: 3383e33edae3141df93dff97c5db466f, type: 3}
+  - rocketUpPrefab: {fileID: 8890037642085017723, guid: 92a174404db484a8787542897faba10c, type: 3}
+  - rocketDownPrefab: {fileID: 4149280004585371692, guid: 36507e3c3e8fb455da1df8dfb62aa971, type: 3}
+  - rocketPart1: {instanceID: 0}
+  - rocketPart2: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
